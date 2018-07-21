@@ -98,6 +98,7 @@ function doPush {
     echo "\nPushing will be to origin"
     # echo -e "Enter branch name: \c"
     # read branch
+    # Determine current branch
     branch="$(git symbolic-ref --short -q HEAD)"
 
     echo "\nPushing changes to origin/$branch..."
