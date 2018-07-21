@@ -9,12 +9,14 @@ function doExit {
     rm STDOUT
   fi
 
-  if [[ -e STDERR && -s STDERR ]]; then
-    echo "\nExited with an error. See error message below"
-    echo "\nError Message"
-    echo "*************"
-    cat STDERR
-    echo "*************"
+  if [[ -e STDERR ]]; then
+    if [ -s STDERR ]; then
+      echo "\nExited with an error. See error message below"
+      echo "\nError Message"
+      echo "*************"
+      cat STDERR
+      echo "*************"
+    fi
     rm STDERR
   else
     echo "\nSuccesfully exited"
