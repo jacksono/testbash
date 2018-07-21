@@ -4,6 +4,7 @@ args=("$@")
 
 # Handles termination of the script either from the trap method or from completion of all operations
 function doExit {
+  msg="\nSuccesfully exited"
   echo "\nCleaning up & Exiting..."
   if [ -e STDOUT ]; then
     rm STDOUT
@@ -16,11 +17,11 @@ function doExit {
       echo "*************"
       cat STDERR
       echo "*************"
-    else
-      echo "\nSuccesfully exited"
+      msg=""
     fi
     rm STDERR
   fi
+  echo $msg
   return
 }
 
@@ -123,7 +124,7 @@ if [ -n "$(git status --porcelain)" ]; then
   doStage
 else
   echo "\nNo changes to stage/commit currently"
-  echo "\n Do you want to proceed to pushing?: \c"
+  echo "\nDo you want to proceed to pushing?: \c"
   read proceed
   if [[ $proceed = "y"  ||  $proceed = "Y" ]]; then
     doPush
