@@ -7,6 +7,7 @@ function doExit {
   echo "\nCleaning up & Exiting..."
   if [ -e STDOUT ]; then
     rm STDOUT
+    echo "\nSuccesfully exited"
   fi
 
   if [[ -e STDERR ]]; then
@@ -18,8 +19,6 @@ function doExit {
       echo "*************"
     fi
     rm STDERR
-  else
-    echo "\nSuccesfully exited"
   fi
   return
 }
