@@ -123,5 +123,12 @@ if [ -n "$(git status --porcelain)" ]; then
   doStage
 else
   echo "\nNo changes to stage/commit currently"
-  doExit
+  echo "\n Do you want to proceed to pushing?: \c"
+  read proceed
+  if [[ $proceed = "y"  ||  $proceed = "Y" ]]; then
+    doPush
+    doExit
+  else
+    doExit
+  fi
 fi
