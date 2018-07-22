@@ -4,14 +4,14 @@ A simple script to automate adding, committing and pushing of changes to a remot
 Run it by calling it on the command line
 
 ```bash
-. pushALL.sh
+. pushAll.sh
 ```
 
 ## Optional arguments
 The script accepts 2 optional arguments
 You can use the first argument to answer yes to all the prompts. For this to happen the 1st argument has to be y or Y
 ```bash
-. pushALL.sh y
+. pushAll.sh y
 ```
 If you do not provide this argument then you will be prompted to type in a response of y/n at each step
 
@@ -20,7 +20,7 @@ To provide a more than one word for the commit message you should enclose them i
 same argument.
 
 ```bash
-. pushALL.sh y "Update the Readme"
+. pushAll.sh y "Update the Readme"
 ```
 
 If you do not provide this argument then you will be prompted to type a commit message into the command line when that
