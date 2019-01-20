@@ -29,9 +29,11 @@ function doExit {
 function doStage {
   if [ -n "${args[1]}" ]; then
     stage=${args[1]}
+    addAll=1
   else
-    echo -e "\nProceed to add all changes to staging? [y/Y or n/N]: \c"
+    echo -e "\nProceed to add changes to staging? [y/Y or n/N]: \c"
     read stage
+    addAll=0
   fi
 
   until [[ $stage = "y"  ||  $stage = "Y" || $stage = "n"  ||  $stage = "N" ]]; do
@@ -41,8 +43,12 @@ function doStage {
 
 
   if [[ $stage = "y"  ||  $stage = "Y" ]]; then
-    echo "\nStaging all changes..."
-    git add .
+    echo "\nStaging changes..."
+    if [[ $addAll = 1 ]]; then
+      git add .
+    else
+      git status --porcelain | awk '{print $2}' | xargs -p -L 1 git add
+    fi
     echo "\nStaging Done"
     doCommit
     doExit
